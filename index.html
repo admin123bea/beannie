@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login Form</title>
+	<link rel="stylesheet" href="ld2.css">
+</head>
+<body> 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Barlow", serif;
+
+}
+
+ul {
+    list-style: none;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+   
+    background-image: url(bg.jpeg);
+    background-size: 100%, 100%;
+    background-repeat: no-repeat;
+
+    }
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+header {
+   background: #E43D12;
+
+}
+
+.section-content {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1200px;
+}
+
+header .nav-bar {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-bar .nav-logo .logo-text {
+    color: white;
+    font-size: 30px;
+    font-weight: 5px;
+}
+
+footer {
+     background-color: #f0c6b4; /* Lighter pastel for footer */
+     padding: 15px;
+     text-align: center;
+     background-color: #E43D12;
+     color: #FFFFFF;
+     position: fixed;
+     bottom: 0;
+     width: 100%;
+}
+
+.container {
+
+            width: 470px;
+            margin: 200px auto;
+            padding: 50px;
+            background-color: transparent;
+            border-radius: 15px;
+            box-shadow: 5px 20px 12px, 10px 0px 15px #E43D12 inset;
+            backdrop-filter: blur(5px);      
+}
+
+
+.container .title
+{
+
+    text-align: center;
+    line-height: 50px;
+    margin-bottom:10px;
+    color: white;
+    background: #E43D12;
+    border-radius: 25px;
+}
+
+.container .title h2{
+    font-size: 30px;
+}
+
+input {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 25px;
+}
+button {
+            background-color: #E43D12;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: "Barlow", serif;
+            
+        }
+        button:hover {
+            background: #EFB11D;
+            color: #000000;
+
+        }
+        #message {
+            color: white;
+            margin-top: 10px;
+        }
+
+	</style>
+    <header>
+ 	<nav class="nav-bar section-content">
+ 		<a href="#" class="nav-logo">
+ 			<h2 class="logo-text">ConcertGo</h2>
+ 		</a>
+ 		
+ 	</nav>
+ 	
+</main>
+</header>
+<div class="container">
+        <h2 class="title">Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="validateLogin()">Login</button>
+        <p id="message"></p>
+    </div>
+<footer>
+        <p> &copy; Program and Developed by Bea Amador</p>
+        
+    </footer>
+	
+</body>
+<script>
+	
+    let attempts = 0;
+    let lockout = false;
+    const correctUsername = "admin123";
+    const correctPassword = "admin123";
+
+    function validateLogin() {
+        if (lockout) return;
+        
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let message = document.getElementById("message");
+        
+        if (username === correctUsername && password === correctPassword) {
+            message.style.color = "white";
+            message.innerText = "Login successfully!";
+            window.location.href = "C:\Amador, Bea\Amador WEB\LD2.html";
+        } else {
+            attempts++;
+            if (attempts >= 2) {
+                lockout = true;
+                message.innerText = "Too many unsuccessful attempts. Please wait 10 seconds.";
+                setTimeout(() => {
+                    attempts = 0;
+                    lockout = false;
+                    message.innerText = "You may try again now.";
+                    document.getElementById("password").value = "";
+                }, 10000);
+            } else {
+                message.innerText = "Incorrect username or password. Try again.";
+            }
+        }
+    }
+
+</script>
+</html>
